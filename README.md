@@ -18,9 +18,11 @@ Re-run any time — every step is idempotent.
 2. Installs everything in [`Brewfile`](./Brewfile) via `brew bundle`.
 3. Sets up oh-my-zsh with powerlevel10k and installs the shell dotfiles from
    [`dotfiles/`](./dotfiles) (backing up any existing files).
-4. Applies opinionated macOS defaults (optional; it asks first).
-5. Walks you through the steps that can't be automated — logins, macOS privacy
-   permissions, SSH keys.
+4. Generates a per-machine SSH key and GPG signing key, configures git to sign
+   commits, and authenticates `gh` (uploading both keys to GitHub when it can).
+5. Applies opinionated macOS defaults (optional; it asks first).
+6. Walks you through the steps that can't be automated — logins and macOS
+   privacy permissions.
 
 ### Options
 
@@ -28,6 +30,7 @@ Re-run any time — every step is idempotent.
 --yes              Assume "yes" for all prompts (non-interactive)
 --skip-brew        Skip Homebrew package installation
 --skip-zsh         Skip oh-my-zsh and shell dotfiles
+--skip-git         Skip SSH/GPG key generation and GitHub auth
 --skip-macos       Skip macOS system defaults
 --skip-checklist   Skip the manual-steps checklist
 --brewfile PATH    Install from an alternate Brewfile

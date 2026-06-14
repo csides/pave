@@ -47,8 +47,12 @@ person, and has **no concept of roles**. Keep it simple and readable.
   TUI may come later.
 - **Software lives in `Brewfile`.** Add/remove apps there, not in shell logic.
 - **Shared helpers live in `lib/`** (logging, prerequisites, brew, zsh/dotfiles,
-  macOS defaults, manual checklist). Keep `bootstrap.sh` a thin orchestrator that
-  calls them in order.
+  git identity, macOS defaults, manual checklist). Keep `bootstrap.sh` a thin
+  orchestrator that calls them in order.
+- **Keys are per-machine, never copied.** SSH and GPG signing keys are generated
+  on each machine; machine-specific git config (the signing key) lives in
+  `~/.gitconfig.local`, included by the committed `.gitconfig`. Never commit a
+  key, fingerprint, or anything that ties one machine's identity into the repo.
 - **Shell dotfiles live in `dotfiles/`** and are copied into `$HOME` (existing
   files are backed up). Keep them generic and hardcode-free (`$HOME`, not
   absolute paths).
