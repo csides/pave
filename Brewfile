@@ -26,6 +26,10 @@ brew "go"
 brew "hashicorp/tap/terraform"
 brew "withgraphite/tap/graphite"
 
+# Commit signing
+brew "gnupg"
+brew "pinentry-mac"
+
 # Tooling for this repo's own checks
 brew "pre-commit"
 brew "shellcheck"

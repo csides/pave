@@ -24,9 +24,8 @@ run_checklist() {
   _open_privacy_pane "Privacy_ScreenCapture"
   pause
 
-  log_info "4. Create an SSH key and add it to GitHub if you don't have one:"
-  log_info '     ssh-keygen -t ed25519 -C "you@example.com"'
-  log_info "     gh auth login"
+  log_info "4. Confirm your SSH and GPG keys show up at https://github.com/settings/keys"
+  log_info "   (the pave generates them; add them there if the gh upload was skipped)."
   pause
 
   log_success "Checklist complete"

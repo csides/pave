@@ -28,7 +28,7 @@ link_dotfiles() {
   log_step "Shell dotfiles"
   local src="$REPO_DIR/dotfiles"
   local f dest backup
-  for f in .zprofile .zshrc .p10k.zsh; do
+  for f in .zprofile .zshrc .p10k.zsh .gitconfig; do
     dest="$HOME/$f"
     if [[ -e $dest ]] && ! diff -q "$src/$f" "$dest" >/dev/null 2>&1; then
       backup="$dest.pre-pave.$(date +%Y%m%d%H%M%S)"

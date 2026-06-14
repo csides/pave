@@ -6,6 +6,7 @@ setup() {
   printf 'zprofile\n' >"$REPO_DIR/dotfiles/.zprofile"
   printf 'zshrc\n' >"$REPO_DIR/dotfiles/.zshrc"
   printf 'p10k\n' >"$REPO_DIR/dotfiles/.p10k.zsh"
+  printf 'gitconfig\n' >"$REPO_DIR/dotfiles/.gitconfig"
   source "$REPO_ROOT/lib/log.sh"
   source "$REPO_ROOT/lib/zsh.sh"
 }
