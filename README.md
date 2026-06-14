@@ -16,8 +16,10 @@ Re-run any time — every step is idempotent.
 
 1. Installs Xcode Command Line Tools and Homebrew.
 2. Installs everything in [`Brewfile`](./Brewfile) via `brew bundle`.
-3. Applies opinionated macOS defaults (optional; it asks first).
-4. Walks you through the steps that can't be automated — logins, macOS privacy
+3. Sets up oh-my-zsh with powerlevel10k and installs the shell dotfiles from
+   [`dotfiles/`](./dotfiles) (backing up any existing files).
+4. Applies opinionated macOS defaults (optional; it asks first).
+5. Walks you through the steps that can't be automated — logins, macOS privacy
    permissions, SSH keys.
 
 ### Options
@@ -25,6 +27,7 @@ Re-run any time — every step is idempotent.
 ```
 --yes              Assume "yes" for all prompts (non-interactive)
 --skip-brew        Skip Homebrew package installation
+--skip-zsh         Skip oh-my-zsh and shell dotfiles
 --skip-macos       Skip macOS system defaults
 --skip-checklist   Skip the manual-steps checklist
 --brewfile PATH    Install from an alternate Brewfile

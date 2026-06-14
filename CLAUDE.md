@@ -46,9 +46,12 @@ person, and has **no concept of roles**. Keep it simple and readable.
 - **Entry point:** `./bootstrap.sh` after cloning. Pretty-printed output now; a
   TUI may come later.
 - **Software lives in `Brewfile`.** Add/remove apps there, not in shell logic.
-- **Shared helpers live in `lib/`** (logging, prerequisites, brew, macOS defaults,
-  manual checklist). Keep `bootstrap.sh` a thin orchestrator that calls them in
-  order.
+- **Shared helpers live in `lib/`** (logging, prerequisites, brew, zsh/dotfiles,
+  macOS defaults, manual checklist). Keep `bootstrap.sh` a thin orchestrator that
+  calls them in order.
+- **Shell dotfiles live in `dotfiles/`** and are copied into `$HOME` (existing
+  files are backed up). Keep them generic and hardcode-free (`$HOME`, not
+  absolute paths).
 - **Shell style:** `bash`, `set -euo pipefail`, pass `shellcheck` and `shfmt`.
 - **Comments are a last resort.** Prefer self-explanatory names and structure.
   Add a comment only when code would otherwise be confusing — a non-obvious
