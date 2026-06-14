@@ -2,6 +2,9 @@
 # truth for everything Homebrew manages. Regenerate from a configured machine
 # with `brew bundle dump --describe`.
 
+tap "hashicorp/tap"
+tap "withgraphite/tap"
+
 # CLI tools
 brew "git"
 brew "gh"
@@ -15,11 +18,13 @@ brew "tree"
 brew "wget"
 brew "tmux"
 
-# Shell
-brew "starship"
-
 # Runtimes / version management
 brew "asdf"
+brew "go"
+
+# Dev tools
+brew "hashicorp/tap/terraform"
+brew "withgraphite/tap/graphite"
 
 # Tooling for this repo's own checks
 brew "pre-commit"
@@ -30,7 +35,7 @@ brew "bats-core"
 
 # Applications
 cask "1password"
-cask "google-chrome"
+cask "brave-browser"
 cask "visual-studio-code"
 cask "iterm2"
 cask "rectangle"
