@@ -35,4 +35,4 @@ jobs:
           curl -fsSL "https://github.com/gitleaks/gitleaks/releases/download/v${version}/gitleaks_${version}_linux_x64.tar.gz" \
             | tar -xz -C "$RUNNER_TEMP" gitleaks
       - name: Scan full history for secrets
-        run: "$RUNNER_TEMP/gitleaks" git . --redact --verbose
+        run: $RUNNER_TEMP/gitleaks git . --redact --verbose
