@@ -30,18 +30,21 @@ repos:
     hooks:
       - id: gitleaks
 
-  # Shell linting.
+  # Shell linting. dotfiles/ is zsh, which shellcheck does not support.
   - repo: https://github.com/shellcheck-py/shellcheck-py
     rev: v0.11.0.1
     hooks:
       - id: shellcheck
+        exclude: ^dotfiles/
 
-  # Shell formatting (2-space indent, indent switch cases, binary ops on next line).
+  # Shell formatting (2-space indent, indent switch cases, binary ops on next
+  # line). dotfiles/ is zsh, which shfmt does not support.
   - repo: https://github.com/scop/pre-commit-shfmt
     rev: v3.13.1-1
     hooks:
       - id: shfmt
         args: [-w, -s, -i, "2", -ci, -bn]
+        exclude: ^dotfiles/
 
   # Enforce Conventional Commits on the commit message.
   - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
