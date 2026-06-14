@@ -1,12 +1,12 @@
-# sides-pave
+# pave
 
 Take a fresh Mac from zero to a working development environment with one script.
 
 ## Quick start
 
 ```sh
-git clone https://github.com/<you>/sides-pave.git
-cd sides-pave
+git clone https://github.com/csides/pave.git
+cd pave
 ./bootstrap.sh
 ```
 

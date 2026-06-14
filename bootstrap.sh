@@ -71,7 +71,7 @@ main() {
 
   [[ "$(uname -s)" == "Darwin" ]] || die "This script supports macOS only"
 
-  log_banner "sides-pave · fresh Mac setup"
+  log_banner "pave · fresh Mac setup"
 
   ensure_command_line_tools
   ensure_homebrew
