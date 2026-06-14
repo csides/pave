@@ -1,0 +1,7 @@
+# Slim Brewfile used by the idempotency E2E. CLI-only so the macOS runner stays
+# fast and reliable; the real Brewfile is validated separately.
+brew "git"
+brew "jq"
+brew "ripgrep"
+brew "shellcheck"
+brew "shfmt"

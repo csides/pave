@@ -1,0 +1,32 @@
+name: e2e
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 9 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  # Confirm every formula and cask in the real Brewfile still resolves upstream
+  # (catches renamed or removed packages — the most common real-world breakage).
+  brewfile-valid:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: ./tests/validate-brewfile.sh Brewfile
+
+  # Run the script twice; the second run must report everything already
+  # installed, proving idempotency.
+  idempotency:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: First run
+        run: ./bootstrap.sh --yes --skip-macos --skip-checklist --brewfile tests/Brewfile.ci
+      - name: Second run is a no-op
+        run: |
+          out="$(./bootstrap.sh --yes --skip-macos --skip-checklist --brewfile tests/Brewfile.ci)"
+          echo "$out"
+          echo "$out" | grep -qi "already installed"
