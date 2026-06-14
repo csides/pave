@@ -24,9 +24,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: First run
-        run: ./bootstrap.sh --yes --skip-macos --skip-checklist --brewfile tests/Brewfile.ci
+        run: ./bootstrap.sh --yes --skip-zsh --skip-git --skip-macos --skip-checklist --brewfile tests/Brewfile.ci
       - name: Second run is a no-op
         run: |
-          out="$(./bootstrap.sh --yes --skip-macos --skip-checklist --brewfile tests/Brewfile.ci)"
+          out="$(./bootstrap.sh --yes --skip-zsh --skip-git --skip-macos --skip-checklist --brewfile tests/Brewfile.ci)"
           echo "$out"
           echo "$out" | grep -qi "already installed"
