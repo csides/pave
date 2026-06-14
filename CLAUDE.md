@@ -32,8 +32,9 @@ person, and has **no concept of roles**. Keep it simple and readable.
    data (the `Brewfile`) over imperative install steps. Declarative state is
    easier to read, diff, and test.
 
-4. **Readable and contributable.** Plain, well-commented shell that any engineer
-   can read and send a PR against. Favor clarity over cleverness. No hidden magic.
+4. **Readable and contributable.** Plain shell that any engineer can read and send
+   a PR against. Favor clarity over cleverness. Make the code self-explanatory
+   through good names and structure rather than narration. No hidden magic.
 
 5. **Fail loudly and informatively.** On error, say what failed, why, and what the
    user can do. Pretty-printed, scannable output (clear step headers, ✓/✗).
@@ -49,6 +50,10 @@ person, and has **no concept of roles**. Keep it simple and readable.
   manual checklist). Keep `bootstrap.sh` a thin orchestrator that calls them in
   order.
 - **Shell style:** `bash`, `set -euo pipefail`, pass `shellcheck` and `shfmt`.
+- **Comments are a last resort.** Prefer self-explanatory names and structure.
+  Add a comment only when code would otherwise be confusing — a non-obvious
+  workaround, a tricky invariant, a "why" that isn't visible in the "what". Keep
+  them succinct, and never narrate what the code plainly says.
 - **Tests:** `bats` unit tests under `tests/`; CI runs lint on every push and an
   idempotency check on a macOS runner. If you add a step, add/extend its guard
   test.
