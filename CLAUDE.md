@@ -1,0 +1,63 @@
+# CLAUDE.md
+
+Guidance for working in this repository.
+
+## What this is
+
+A macOS **"pave"** script: it takes a brand-new Mac from a near-zero state to a
+fully functional development machine — installing applications and developer
+tooling, applying sane system defaults, and walking the user through the manual
+steps that genuinely can't be automated. There is no "nuke" step; it assumes a
+fresh machine.
+
+This is the **personal, single-user** version. It is public, supports one
+person, and has **no concept of roles**. Keep it simple and readable.
+
+## Guiding principles
+
+1. **Automate the automatable, checklist the rest.** A large share of macOS setup
+   cannot be scripted — anything behind interactive auth (Apple ID, 1Password,
+   SSO, VPN) and anything gated by macOS TCC privacy permissions (Accessibility,
+   Full Disk Access, Screen Recording, etc.) requires a human or an MDM profile.
+   Do not fight this. Install what can be installed, then **pause and guide the
+   human** with clear instructions and `open "x-apple.systempreferences:..."`
+   deep-links. Never pretend a manual step was automated.
+
+2. **Idempotent above all.** Every step must be safe to run repeatedly. Re-running
+   `bootstrap.sh` on an already-set-up machine should be an uneventful no-op.
+   Guard every action with an "is this already done?" check. This is also the
+   core property the tests verify.
+
+3. **Declarative where possible.** Prefer expressing *what* should be installed as
+   data (the `Brewfile`) over imperative install steps. Declarative state is
+   easier to read, diff, and test.
+
+4. **Readable and contributable.** Plain, well-commented shell that any engineer
+   can read and send a PR against. Favor clarity over cleverness. No hidden magic.
+
+5. **Fail loudly and informatively.** On error, say what failed, why, and what the
+   user can do. Pretty-printed, scannable output (clear step headers, ✓/✗).
+
+6. **No secrets, ever.** Nothing sensitive committed. This repo is public.
+
+## Conventions
+
+- **Entry point:** `./bootstrap.sh` after cloning. Pretty-printed output now; a
+  TUI may come later.
+- **Software lives in `Brewfile`.** Add/remove apps there, not in shell logic.
+- **Shared helpers live in `lib/`** (logging, prerequisites, brew, macOS defaults,
+  manual checklist). Keep `bootstrap.sh` a thin orchestrator that calls them in
+  order.
+- **Shell style:** `bash`, `set -euo pipefail`, pass `shellcheck` and `shfmt`.
+- **Tests:** `bats` unit tests under `tests/`; CI runs lint on every push and an
+  idempotency check on a macOS runner. If you add a step, add/extend its guard
+  test.
+
+## Things to keep in mind
+
+- macOS-only. Don't add Linux/Windows branches.
+- The bootstrap chicken-and-egg: Xcode Command Line Tools and Homebrew must be
+  installed *before* anything else can run; handle them first and defensively.
+- This repo is intended to be forked later into a multi-role version. Keep the
+  orchestration clean enough that adding roles is a small, additive change — but
+  do **not** build role support here.
