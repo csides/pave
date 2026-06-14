@@ -1,0 +1,9 @@
+# Default to bash for files without a shebang.
+shell=bash
+
+# bootstrap.sh sources lib/*.sh at runtime; let shellcheck follow those sources.
+external-sources=true
+
+# Opt-in checks that catch real bugs without being noisy.
+enable=quote-safe-variables
+enable=add-default-case
