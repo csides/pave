@@ -14,7 +14,7 @@ jobs:
   brewfile-valid:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - run: ./tests/validate-brewfile.sh Brewfile
 
   # Run the script twice; the second run must report everything already
@@ -22,7 +22,7 @@ jobs:
   idempotency:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: First run
         run: ./bootstrap.sh --yes --skip-zsh --skip-git --skip-macos --skip-checklist --brewfile tests/Brewfile.ci
       - name: Second run is a no-op
